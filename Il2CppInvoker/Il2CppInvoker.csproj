@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="Unity.IL2CPP">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.3.14f1\Editor\Data\il2cpp\build\Unity.IL2CPP.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Unity.IL2CPP.Building">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.3.14f1\Editor\Data\il2cpp\build\Unity.IL2CPP.Building.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Unity.IL2CPP.Common">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.3.14f1\Editor\Data\il2cpp\build\Unity.IL2CPP.Common.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Unity.IL2CPP.Common35">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.3.14f1\Editor\Data\il2cpp\build\Unity.IL2CPP.Common35.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Unity.IL2CPP.CompilerServices">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.3.14f1\Editor\Data\il2cpp\build\Unity.IL2CPP.CompilerServices.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Unity.IL2CPP.Portability">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.3.14f1\Editor\Data\il2cpp\build\Unity.IL2CPP.Portability.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Unity.IL2CPP.Running">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.3.14f1\Editor\Data\il2cpp\build\Unity.IL2CPP.Running.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Unity.IL2CPP.Shell">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.3.14f1\Editor\Data\il2cpp\build\Unity.IL2CPP.Shell.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+</Project>
