@@ -9,7 +9,7 @@ namespace Il2CppInvoker
         private const string FilePathStoreFile = "il2cpp.path";
         static void Main(string[] args)
         {
-            var il2cppPath = "";
+            string il2cppPath;
             if (File.Exists(FilePathStoreFile))
                 il2cppPath = File.ReadAllText(FilePathStoreFile);
             else
