@@ -1,0 +1,4 @@
+
+
+// HarmonyLib.PatchFunctions
+HarmonyLib.PatchFunctions::UpdateWrapper(System.Reflection.MethodBase,HarmonyLib.PatchInfo,System.String) harmony::PatchFunctions::UpdateWrapper
