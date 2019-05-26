@@ -122,6 +122,10 @@ SET(NUGET_CACHE_PATH "~/.nuget/packages")
 FIND_PROGRAM(DOTNET_EXE dotnet)
 SET(DOTNET_MODULE_DIR ${CMAKE_CURRENT_LIST_DIR})
 
+OPTION(DOTNET_BUILD_PUBLISH "If on, runs dotnet publish instead of dotnet build" ON)
+OPTION(DOTNET_BUILD_STANDALONE "If on, publishes projects as fully standalone" OFF)
+SET(DOTNET_STANDALONE_RUNTIME "win-x64" CACHE STRING "The runtime identifier to use when publishing the standalong package")
+
 IF(NOT DOTNET_EXE)
     SET(DOTNET_FOUND FALSE)
     IF(Dotnet_FIND_REQUIRED)
@@ -320,11 +324,20 @@ MACRO(DOTNET_BUILD_COMMANDS)
             COMMAND ${DOTNET_EXE} msbuild ${DOTNET_PROJPATH} /t:Build ${DOTNET_BUILD_PROPERTIES} /p:Configuration="${DOTNET_CONFIG}" ${DOTNET_ARGUMENTS})
         SET(build_dotnet_type "msbuild")
     ELSE()
+		if (DOTNET_BUILD_STANDALONE AND DOTNET_BUILD_PUBLISH)
+			SET (build_runtime_opt -r ${DOTNET_STANDALONE_RUNTIME})
+		else()
+			SET (build_runtime_opt)
+		endif()
         SET(build_dotnet_cmds 
             COMMAND ${CMAKE_COMMAND} -E echo "======= Building .NET project ${DOTNET_PROJNAME} [${DOTNET_CONFIG} ${DOTNET_PLATFORM}]"
             COMMAND ${DOTNET_EXE} restore ${DOTNET_PROJPATH} ${DOTNET_IMPORT_PROPERTIES}
-            COMMAND ${DOTNET_EXE} clean ${DOTNET_PROJPATH} ${DOTNET_BUILD_PROPERTIES}
-            COMMAND ${DOTNET_EXE} build --no-restore ${DOTNET_PROJPATH} -c ${DOTNET_CONFIG} ${DOTNET_BUILD_PROPERTIES} ${DOTNET_BUILD_OPTIONS} ${DOTNET_ARGUMENTS})
+            COMMAND ${DOTNET_EXE} clean ${DOTNET_PROJPATH} ${DOTNET_BUILD_PROPERTIES})
+		if (DOTNET_BUILD_PUBLISH)
+			list(APPEND build_dotnet_cmds COMMAND ${DOTNET_EXE} publish --no-restore ${DOTNET_PROJPATH} -c ${DOTNET_CONFIG} ${build_runtime_opt} ${DOTNET_BUILD_PROPERTIES} ${DOTNET_BUILD_OPTIONS} ${DOTNET_ARGUMENTS})
+		else()
+			list(APPEND build_dotnet_cmds COMMAND ${DOTNET_EXE} build --no-restore ${DOTNET_PROJPATH} -c ${DOTNET_CONFIG} ${DOTNET_BUILD_PROPERTIES} ${DOTNET_BUILD_OPTIONS} ${DOTNET_ARGUMENTS})
+		endif()
         SET(build_dotnet_type "dotnet")
     ENDIF()
 

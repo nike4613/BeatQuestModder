@@ -1,40 +1,50 @@
 ﻿{
-  "configurations": [
-    {
-      "name": "x64-Clang-Debug",
-      "generator": "Ninja",
-      "configurationType": "Debug",
-      "buildRoot": "${projectDir}\\out\\build\\${name}",
-      "installRoot": "${projectDir}\\out\\install\\${name}",
-      "cmakeCommandArgs": "",
-      "buildCommandArgs": "-v",
-      "ctestCommandArgs": "",
-      "inheritEnvironments": [ "clang_cl_x64" ],
-      "variables": [
-        {
-          "name": "CMAKE_BUILD_TYPE",
-          "value": "Debug",
-          "type": "STRING"
-        }
-      ]
-    },
-    {
-      "name": "x64-Clang-Release",
-      "generator": "Ninja",
-      "configurationType": "RelWithDebInfo",
-      "buildRoot": "${projectDir}\\out\\build\\${name}",
-      "installRoot": "${projectDir}\\out\\install\\${name}",
-      "cmakeCommandArgs": "",
-      "buildCommandArgs": "-v",
-      "ctestCommandArgs": "",
-      "inheritEnvironments": [ "clang_cl_x64" ],
-      "variables": [
-        {
-          "name": "CMAKE_BUILD_TYPE",
-          "value": "RelWithDebInfo",
-          "type": "STRING"
-        }
-      ]
-    }
-  ]
+"configurations": [
+{
+"name": "x64-Clang-Debug",
+"generator": "Ninja",
+"configurationType": "Debug",
+"buildRoot": "${projectDir}\\out\\build\\${name}",
+"installRoot": "${projectDir}\\out\\install\\${name}",
+"cmakeCommandArgs": "",
+"buildCommandArgs": "-v",
+"ctestCommandArgs": "",
+"inheritEnvironments": [ "clang_cl_x64" ],
+"variables": [
+{
+"name": "DOTNET_BUILD_STANDALONE",
+"value": "false",
+"type": "BOOL"
+},
+{
+"name": "DOTNET_BUILD_PUBLISH",
+"value": "true",
+"type": "BOOL"
+}
+]
+},
+{
+"name": "x64-Clang-Release",
+"generator": "Ninja",
+"configurationType": "RelWithDebInfo",
+"buildRoot": "${projectDir}\\out\\build\\${name}",
+"installRoot": "${projectDir}\\out\\install\\${name}",
+"cmakeCommandArgs": "",
+"buildCommandArgs": "-v",
+"ctestCommandArgs": "",
+"inheritEnvironments": [ "clang_cl_x64" ],
+"variables": [
+{
+"name": "DOTNET_BUILD_STANDALONE",
+"value": "True",
+"type": "BOOL"
+},
+{
+"name": "DOTNET_BUILD_PUBLISH",
+"value": "true",
+"type": "BOOL"
+}
+]
+}
+]
 }
