@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "icalls.h"
 
 using namespace il2cpp;
