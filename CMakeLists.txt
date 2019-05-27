@@ -9,6 +9,9 @@ project ("BeatQuestModder")
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# Include libraries
+add_subdirectory ("extern")
+
 # Include sub-projects.
 add_subdirectory ("Host")
 add_subdirectory ("Target")
