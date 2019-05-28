@@ -8,7 +8,7 @@
 
 using namespace std;
 
-auto code_buffer = make_buffer("\x55\x48\x8b\x05\xb8\x13\x00\x00").reinterpret_as<uint8_t>().slice(8);
+auto code_buffer = "\x55\x48\x8b\x05\xb8\x13\x00\x00"_buffer.reinterpret_as<uint8_t>();
 
 int main()
 {
