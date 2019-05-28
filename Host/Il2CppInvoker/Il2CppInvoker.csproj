@@ -8,6 +8,27 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Lib.Harmony" Version="1.2.0.1" />
+    <PackageReference Include="System.Reflection.Emit" Version="4.6.0-preview5.19224.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Mono.Cecil">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.3.14f1\Editor\Data\il2cpp\build\Mono.Cecil.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Mono.Cecil.Mdb">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.3.14f1\Editor\Data\il2cpp\build\Mono.Cecil.Mdb.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Mono.Cecil.Pdb">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.3.14f1\Editor\Data\il2cpp\build\Mono.Cecil.Pdb.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Mono.Cecil.Rocks">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2018.3.14f1\Editor\Data\il2cpp\build\Mono.Cecil.Rocks.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
     <Reference Include="Unity.IL2CPP">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2018.3.14f1\Editor\Data\il2cpp\build\Unity.IL2CPP.dll</HintPath>
       <Private>false</Private>
@@ -39,7 +60,6 @@
     <Reference Include="Unity.IL2CPP.Shell">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2018.3.14f1\Editor\Data\il2cpp\build\Unity.IL2CPP.Shell.dll</HintPath>
       <Private>false</Private>
-    </Reference>
-  </ItemGroup>
+    </Reference>  </ItemGroup>
 
 </Project>

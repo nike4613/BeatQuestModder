@@ -31,6 +31,7 @@ namespace Il2CppInvoker
 
         private static void RunnerProxy(string il2cppRoot, string[] searchDirs, string[] convertDirs)
         {
+            Il2CppRunner.PatchGlobalToBeNice();
             Il2CppRunner.Run(il2cppRoot, searchDirs, convertDirs);
         }
     }

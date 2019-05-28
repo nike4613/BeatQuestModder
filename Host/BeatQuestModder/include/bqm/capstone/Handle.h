@@ -6,13 +6,13 @@
 #include "buffer.h"
 
 namespace capstone {
-	class Handle_
+	class RuntimeHandle
 	{
 		csh handle = 0;
 		cs_err error;
 	public:
-		Handle_(cs_arch arch, cs_mode mode) noexcept;
-		~Handle_() noexcept;
+		RuntimeHandle(cs_arch arch, cs_mode mode) noexcept;
+		~RuntimeHandle() noexcept;
 		[[nodiscard]] constexpr auto Handle() const noexcept { return handle; }
 		[[nodiscard]] constexpr auto Error() const noexcept { return error; }
 
@@ -22,10 +22,10 @@ namespace capstone {
 	};
 
 	template<cs_arch ARCH, cs_mode MODE>
-	class Handle : public Handle_
+	class Handle : public RuntimeHandle
 	{
 	public:
-		Handle() noexcept : Handle_(ARCH, MODE) {}
+		Handle() noexcept : RuntimeHandle(ARCH, MODE) {}
 	};
 
 	using ARMHandle = Handle<CS_ARCH_ARM, CS_MODE_ARM>;

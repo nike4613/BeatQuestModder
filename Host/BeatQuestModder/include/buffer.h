@@ -26,6 +26,7 @@ class buffer<T, true>
 	friend class buffer<T, true>;
 
 	constexpr buffer(std::nullptr_t) noexcept : memptr(nullptr), size_(0), ownAlloc(false), deallocator({}) {}
+	constexpr void adjust(size_t ptr_off, size_t size) noexcept { memptr += ptr_off; size_ = size; }
 public:
 	template<bool readwrite>
 	// copy actual buffer data
@@ -52,6 +53,10 @@ public:
 	[[nodiscard]] constexpr auto data() const noexcept { return memptr; }
 	[[nodiscard]] constexpr auto size() const noexcept { return size_; }
 	[[nodiscard]] constexpr auto empty() const noexcept { return size() == 0; }
+
+	// does not do bounds checking
+	[[nodiscard]] constexpr auto slice(size_t start, size_t len) const noexcept { return buffer<T, true>(data() + start, len); }
+	[[nodiscard]] constexpr auto slice(size_t len) const noexcept { return slice(0, len); }
 
 	[[nodiscard]] constexpr const T& operator[](size_t index) const noexcept { return memptr[index]; }
 	[[nodiscard]] constexpr T& operator[](size_t index) noexcept { return memptr[index]; }
@@ -83,7 +88,7 @@ class buffer<T, false>
 	buffer<T, true> rwBuffer;
 public:
 	// keep a hold of the other buffer
-	constexpr buffer(const buffer<T, true>& other) noexcept : memptr(other.data()), size_(other.size()), rwBuffer(other) {}
+	constexpr buffer(const buffer<T, true>& other) noexcept : rwBuffer(other), memptr(rwBuffer.data()), size_(rwBuffer.size()) {}
 	// no need to copy
 	constexpr buffer(const buffer<T, false>& other) noexcept : memptr(other.data()), size_(other.size()), rwBuffer(nullptr) {}
 	// no need to transfer ownership
@@ -100,6 +105,10 @@ public:
 	[[nodiscard]] constexpr auto data() const noexcept { return memptr; }
 	[[nodiscard]] constexpr auto size() const noexcept { return size_; }
 	[[nodiscard]] constexpr auto empty() const noexcept { return size() == 0; }
+
+	// does not do bounds checking
+	[[nodiscard]] constexpr auto slice(size_t start, size_t len) const noexcept { return buffer<T, false>(data() + start, len); }
+	[[nodiscard]] constexpr auto slice(size_t len) const noexcept { return slice(0, len); }
 
 	[[nodiscard]] constexpr const T& operator[](size_t index) const noexcept { return memptr[index]; }
 
