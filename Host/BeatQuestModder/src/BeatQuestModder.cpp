@@ -82,6 +82,5 @@ int main()
 		module->print(llvm::outs(), nullptr);
 	}
 
-	cout << "Hello CMake." << endl;
 	return 0;
 }
