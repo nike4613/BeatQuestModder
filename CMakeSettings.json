@@ -25,6 +25,26 @@
           "name": "COMPILE_USE_LTO",
           "value": "false",
           "type": "BOOL"
+        },
+        {
+          "name": "CLANG_INCLUDE_DOCS",
+          "value": "False",
+          "type": "BOOL"
+        },
+        {
+          "name": "LLVM_INCLUDE_DOCS",
+          "value": "False",
+          "type": "BOOL"
+        },
+        {
+          "name": "LLVM_INCLUDE_EXAMPLES",
+          "value": "True",
+          "type": "BOOL"
+        },
+        {
+          "name": "LLVM_INCLUDE_GO_TESTS",
+          "value": "False",
+          "type": "BOOL"
         }
       ]
     },

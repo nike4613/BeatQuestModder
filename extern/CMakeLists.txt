@@ -3,6 +3,36 @@ set(CAPSTONE_ARM_SUPPORT ON CACHE BOOL "Enable Capstone ARM support" FORCE)
 set(CAPSTONE_BUILD_STATIC_RUNTIME OFF CACHE BOOL "Disable Capstone static runtime build" FORCE)
 set(CAPSTONE_BUILD_SHARED OFF CACHE BOOL "Disable Capstone shared build" FORCE)
 
-add_subdirectory("capstone")
+add_subdirectory("capstone" EXCLUDE_FROM_ALL)
 
 set(CAPSTONE_INCLUDE_DIR "${CMAKE_CURRENT_LIST_DIR}/capstone/include" PARENT_SCOPE)
+
+
+# LLVM
+
+include(ExternalProject)
+
+set(LLVM_ENABLE_PROJECTS "clang;lld;libcxx;libclc" CACHE STRING "enabled llvm projects" FORCE)
+set(LLVM_TARGETS_TO_BUILD "ARM" CACHE STRING "backend targets" FORCE)
+set(LLVM_ENABLE_MODULES ON CACHE BOOL "c++ modules" FORCE)
+set(LLVM_ENABLE_LLD ON CACHE BOOL "lld" FORCE)
+set(LLVM_BUILD_LLVM_DYLIB OFF CACHE BOOL "dynlib" FORCE)
+set(LLVM_BUILD_LLVM_C_DYLIB OFF CACHE BOOL "dynlib" FORCE)
+set(LIBCLANG_BUILD_STATIC ON CACHE BOOL "libclang static" FORCE)
+
+c_get_command_vars(CMAKE_VARS)
+
+set(LLVM_INSTALL_DIR ${CMAKE_CURRENT_BINARY_DIR}/llvm/install)
+
+ExternalProject_Add(llvm
+	SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/llvm
+	PREFIX ${CMAKE_CURRENT_BINARY_DIR}/llvm
+	SOURCE_SUBDIR llvm
+	CMAKE_ARGS
+		-E env ${CMAKE_ENVIRONMENT}
+		${CMAKE_COMMAND}
+		${CMAKE_VARS}
+		-DCMAKE_INSTALL_PREFIX=${LLVM_INSTALL_DIR}
+	)
+
+set(LLVM_INCLUDE_DIR "${LLVM_INSTALL_DIR}/include" PARENT_SCOPE)
