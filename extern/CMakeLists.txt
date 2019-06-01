@@ -21,3 +21,4 @@ add_subdirectory("llvm/llvm" EXCLUDE_FROM_ALL)
 
 set(LLVM_INCLUDE_DIR "${CMAKE_CURRENT_LIST_DIR}/llvm/llvm/include" PARENT_SCOPE) 
 set(LLVM_INCLUDE_DIR_CONF "${CMAKE_CURRENT_BINARY_DIR}/llvm/llvm/include" PARENT_SCOPE) 
+set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH};${CMAKE_CURRENT_LIST_DIR}/llvm/llvm/cmake/modules" PARENT_SCOPE)
